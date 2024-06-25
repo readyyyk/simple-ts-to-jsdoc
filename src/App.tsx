@@ -21,16 +21,23 @@ function App() {
   const [input, setInput] = useState(initialInput);
   const [output, setOutput] = useState("");
   const [isActive, setIsActive] = useState(false);
+  const [t, setT] = useState<number | undefined>(undefined);
 
+  
   useEffect(()=>{
     setOutput(transpile(input));
     setIsActive(false);
-  }, [input, setOutput]);
+  }, [input, setOutput, setIsActive]);
+
 
   function onCopy() {
     navigator.clipboard.writeText(output);
     setIsActive(true);
-    setTimeout(()=>setIsActive(false), successDelay);
+    
+    clearTimeout(t);
+    setT(setTimeout(() => {
+      setIsActive(false);
+    }, successDelay));
   }
 
   return (

@@ -43,6 +43,7 @@
 
 
 .copy {
+  cursor: pointer;
   justify-self: center;
   align-self: center;
   margin-top: -1rem;
